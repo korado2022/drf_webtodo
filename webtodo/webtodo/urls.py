@@ -19,14 +19,27 @@ from rest_framework.routers import DefaultRouter
 from users.views import UserModelViewSet
 from todo.views import ProjectModelViewSet, ToDoModelViewSet
 
+from webtodo.views import ToDoDjangoFilterViewSet
+
+from .views import ProjectDjangoFilterViewSet, ToDoDjangoFilterViewSet, ProjectLimitOffsetPaginationViewSet, \
+    ToDoLimitOffsetPaginationViewSet, ProjectViewSet, UserCustomViewSet, ToDoViewSet
+
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
+router.register('user', UserCustomViewSet)
 router.register('projects', ProjectModelViewSet)
+router.register('project', ProjectViewSet)
 router.register('todos', ToDoModelViewSet)
+router.register(r'todo', ToDoViewSet, basename='todo')
+router.register('project_f', ProjectDjangoFilterViewSet)
+router.register('project_p', ProjectLimitOffsetPaginationViewSet)
+router.register('todo_f', ToDoDjangoFilterViewSet)
+router.register('todo_p', ToDoLimitOffsetPaginationViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+
     path('api/', include(router.urls)),
 ]
