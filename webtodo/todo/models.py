@@ -10,7 +10,7 @@ class Project(models.Model):
     developers = models.ManyToManyField(User)
 
 
-class ToDo(models.Model):
+class Todo(models.Model):
     working = models.ForeignKey(Project, on_delete=models.CASCADE)
     text_note = models.TextField()
     create_at = models.DateField(auto_now_add=True)
