@@ -9,8 +9,8 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ViewSet, GenericViewSet
 from django_filters import rest_framework as filters
 
-from todo.models import ToDo, Project
-from todo.serializers import ToDoModelSerializer, ProjectModelSerializer
+from todo.models import Todo, Project
+from todo.serializers import TodoModelSerializer, ProjectModelSerializer
 from todo.filters import ProjectFilter
 
 from users.models import User
@@ -23,9 +23,9 @@ class ProjectDjangoFilterViewSet(ModelViewSet):
     filterset_class = ProjectFilter
 
 
-class ToDoDjangoFilterViewSet(ModelViewSet):
-    queryset = ToDo.objects.all()
-    serializer_class = ToDoModelSerializer
+class TodoDjangoFilterViewSet(ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoModelSerializer
     filterset_fields = ['working']
 
 
@@ -39,14 +39,14 @@ class ProjectLimitOffsetPaginationViewSet(ModelViewSet):
     pagination_class = ProjectLimitOffsetPagination
 
 
-class ToDoLimitOffsetPagination(LimitOffsetPagination):
+class TodoLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 20
 
 
-class ToDoLimitOffsetPaginationViewSet(ModelViewSet):
-    queryset = ToDo.objects.all()
-    serializer_class = ToDoModelSerializer
-    pagination_class = ToDoLimitOffsetPagination
+class TodoLimitOffsetPaginationViewSet(ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoModelSerializer
+    pagination_class = TodoLimitOffsetPagination
 
 
 class ProjectViewSet(ModelViewSet):
@@ -61,27 +61,27 @@ class ToDoViewSet(ViewSet):
 
 
     def list(self, request):
-        request = ToDo.objects.all()
-        serializer_class = ToDoModelSerializer(request, many=True)
+        request = Todo.objects.all()
+        serializer_class = TodoModelSerializer(request, many=True)
         return Response(serializer_class.data)
 
 
     def create(self, request):
-        queryset = ToDo.objects.all()
-        serializer_class = ToDoModelSerializer(queryset)
+        queryset = Todo.objects.all()
+        serializer_class = TodoModelSerializer(queryset)
         return Response(serializer_class.data)
 
 
     def retrieve(self, request, pk=None):
-        todo = get_object_or_404(ToDo, pk=pk)
-        serializer_class = ToDoModelSerializer(todo)
+        todo = get_object_or_404(Todo, pk=pk)
+        serializer_class = TodoModelSerializer(todo)
         return Response(serializer_class.data)
 
 
     def update(self, request, pk=None):
-        queryset = ToDo.objects.all()
+        queryset = Todo.objects.all()
         todo = get_object_or_404(queryset, pk=pk)
-        serializer_class = ToDoModelSerializer(instance=todo, data=request.data, partial=True)
+        serializer_class = TodoModelSerializer(instance=todo, data=request.data, partial=True)
 
         if serializer_class.is_valid():
             serializer_class.save()
@@ -91,10 +91,10 @@ class ToDoViewSet(ViewSet):
 
 
     def destroy(self, request, pk=None):
-        queryset = ToDo.objects.all()
+        queryset = Todo.objects.all()
         todo = get_object_or_404(queryset, pk=pk)
         todo.status = False
-        serializer_class = ToDoModelSerializer(instance=todo, data=request.data, partial=True)
+        serializer_class = TodoModelSerializer(instance=todo, data=request.data, partial=True)
 
         if serializer_class.is_valid(raise_exception=False):
             serializer_class.save()

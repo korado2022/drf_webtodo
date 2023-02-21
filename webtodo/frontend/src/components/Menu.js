@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 
+
 const NaviBar = () => {
     return (
         <>
@@ -13,9 +14,9 @@ const NaviBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-2">
-                        <Nav.Link>Все пользователи</Nav.Link>
-                        <Nav.Link>Проекты</Nav.Link>
-                        <Nav.Link>To Do</Nav.Link>
+                        <Nav.Link href='/users'>Все пользователи</Nav.Link>
+                        <Nav.Link href='/projects'>Проекты</Nav.Link>
+                        <Nav.Link href='/todos'>To Do</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
@@ -30,4 +31,4 @@ const NaviBar = () => {
     );
 }
 
-export default NaviBar
+export default NaviBar;

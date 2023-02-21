@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Project, ToDo
+from .models import Project, Todo
 
 class ProjectModelSerializer(ModelSerializer):
 
@@ -11,11 +11,12 @@ class ProjectModelSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class ToDoModelSerializer(ModelSerializer):
+class TodoModelSerializer(ModelSerializer):
 
 
 
 
     class Meta:
-        model = ToDo
+        model = Todo
         fields = '__all__'
+        # exclude = ('status')
