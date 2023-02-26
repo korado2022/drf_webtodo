@@ -5,7 +5,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 
 
-const NaviBar = () => {
+
+
+const NaviBar = (props) => {
+    const is_in = [props.is_in][0];
     return (
         <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,14 +24,16 @@ const NaviBar = () => {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav>
-                        <Button variant="primary" className="me-2 d-flex">Log In</Button>
-                        <Button variant="primary" className="me-2 d-flex">Sing Out</Button>
+                        <Button variant="primary" className="me-2 d-flex is_in" href='/login' disabled={is_in}>Log In</Button>
+                        <Button variant="primary" className="me-2 d-flex" disabled={!is_in}
+                            onClick={() => props.logout()} href='/login'>Sing Out</Button>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
         </>
     );
+    console.log(this.props.token)
 }
 
 export default NaviBar;
