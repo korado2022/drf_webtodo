@@ -19,6 +19,7 @@ from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 from users.views import UserModelViewSet
 from todo.views import ProjectModelViewSet, TodoModelViewSet
+from graphene_django.views import GraphQLView
 
 
 from drf_yasg import openapi
@@ -72,6 +73,7 @@ urlpatterns = [
     # path('api/<str:version>/user/', UserListApiView.as_view())
     path('api/user/v1/', include('userapp.urls', namespace='v1')),
     path('api/user/v2/', include('userapp.urls', namespace='v2')),
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
 
 
 ]
