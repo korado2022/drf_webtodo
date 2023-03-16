@@ -1,8 +1,7 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 
-
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, deleteTodo}) => {
     return (
         <tr>
             <td>{todo.id}</td>
@@ -12,14 +11,15 @@ const TodoItem = ({todo}) => {
             <td>{todo.status}</td>
             <td>{todo.working}</td>
             <td>{todo.author_todo}</td>
+            <td><button onClick={ ()=> deleteTodo(todo.id) } type='button'>Delete</button></td>
         </tr>
     )
 }
 
 
-const TodotList = ({todos}) => {
+const TodotList = ({todos, deleteTodo}) => {
     return (
-        <Container>
+        <div className='container'>
             <table>
                 <th>Id</th>
                 <th>Text mote</th>
@@ -28,9 +28,11 @@ const TodotList = ({todos}) => {
                 <th>Status</th>
                 <th>Working</th>
                 <th>Author todo</th>
-                {todos.map((todo) => <TodoItem todo={todo} />)}
+                <th></th>
+                {todos.map((todo) => <TodoItem todo={todo} deleteTodo={deleteTodo} />)}
             </table>
-        </Container>
+            <Nav.Link href='/todos/create'>Create</Nav.Link>
+        </div>
     )
 }
 
