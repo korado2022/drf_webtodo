@@ -6,8 +6,8 @@ const Footer = () => (
     
             <Container fluid style={{ backgroundColor: '#212529', color: '#fff'}}>
                 <Container style={{ display: 'flex', justifyContent: 'center', padding: '10px'}}>
-                    <div class="container">
-                        <span class="sub">© Все права защищены 2023</span>
+                    <div className="container">
+                        <span className="sub">© Все права защищены 2023</span>
                     </div>
                 </Container>
             </Container>

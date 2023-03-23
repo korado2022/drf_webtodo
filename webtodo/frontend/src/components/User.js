@@ -17,6 +17,7 @@ const UserItem = ({user}) => {
 
 const UserList = ({users}) => {
     return (
+        <div className='container'>
         <Container>
             <table>
                 <th>User name</th>
@@ -26,6 +27,7 @@ const UserList = ({users}) => {
                 {users.map((user) => <UserItem user={user} />)}
             </table>
         </Container>
+        </div>
     )
 }
 
